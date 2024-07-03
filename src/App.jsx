@@ -20,8 +20,8 @@ function App() {
 
   return (
     <main>
-      <PlayerList activePlayer={activePlayer} />
       <Table rowCol={4} handleClick={handleTableSelect} />
+      <PlayerList activePlayer={activePlayer} />
     </main>
   );
 }
