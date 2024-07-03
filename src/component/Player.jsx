@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function Player({ activePlayer, id }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [playerName, setPlayerName] = useState(`Player ${id+1}`);
+  const [playerName, setPlayerName] = useState(`Player ${id}`);
   let playerItem;
 
   if (isEditing) {

@@ -1,27 +1,33 @@
 import { useState } from 'react';
 import './css/App.css';
 import Gameboard from './component/Gameboard.jsx';
-import PlayerList from './component/PlayerList.jsx';
+import Player from './component/Player.jsx';
 
 function App() {
-  const [activePlayer, setActivePlayer] = useState(0);
-  function handleGameboardSelect(e, setGameboard) {
+  const [activePlayer, setActivePlayer] = useState(1); // player = 1 or 2
+  const [log, setLog] = useState([]);
+
+  function handleCellSelect(e) {
     if (!e.target.innerText) {
       const row = parseInt(e.target.dataset.row);
       const column = parseInt(e.target.dataset.column);
-      setGameboard((prevGameboard) => {
-        const newGameboard = [...prevGameboard.map((inner) => [...inner])];
-        newGameboard[row][column] = activePlayer === 0 ? 1 : -1;
-        setActivePlayer(activePlayer === 0 ? 1 : 0);
-        return newGameboard;
+      setLog((prevLog) => {
+        const newLog = [...prevLog.map(inner => ({...inner}))];
+        let player = prevLog[0] ? (prevLog[0].player === 1 ? 2 : 1) : 1;
+        newLog.unshift({ row, column, player });
+        return newLog;
       });
+      setActivePlayer((prevAcPy) => prevAcPy === 1 ? 2 : 1);
     }
   }
 
   return (
     <main>
-      <Gameboard rowCol={4} handleClick={handleGameboardSelect} />
-      <PlayerList activePlayer={activePlayer} />
+      <Gameboard rowCol={4} log={log} handleClick={handleCellSelect} />
+      <ol id='playerlist'>
+        <Player id={1} activePlayer={activePlayer} />
+        <Player id={2} activePlayer={activePlayer} />
+      </ol>
     </main>
   );
 }

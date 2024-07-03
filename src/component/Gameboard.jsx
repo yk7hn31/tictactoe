@@ -1,16 +1,14 @@
-import { useState } from 'react';
-
-function Gameboard({ rowCol, handleClick }) { // rowCol must be either 3 or 4
-  const [gameboard, setGameboard] = useState(() => {
-    const init = [];
-    for (let i = 0; i < rowCol; i++) {
-      init.push([]);
-      for (let j = 0; j < rowCol; j++) {
-        init[i].push(0);
-      }
+function Gameboard({ rowCol, log, handleClick }) { // rowCol must be either 3 or 4
+  let gameboard = [];
+  for (let i = 0; i < rowCol; i++) {
+    gameboard.push([]);
+    for (let j = 0; j < rowCol; j++) {
+      gameboard[i].push(null);
     }
-    return init;
-  });
+  }
+  for (const act of log) {
+    gameboard[act.row][act.column] = act.player;
+  }
 
   return (
     <div id='gameboard'>
@@ -20,7 +18,7 @@ function Gameboard({ rowCol, handleClick }) { // rowCol must be either 3 or 4
             let cell = null;
             if (column) cell = column === 1 ? 'O' : 'X';
             return (
-              <li key={`${rowIndex}x${columnIndex}`} className='cell' data-column={columnIndex} data-row={rowIndex} onClick={e => handleClick(e, setGameboard)}>
+              <li key={`${rowIndex}x${columnIndex}`} className='cell' data-column={columnIndex} data-row={rowIndex} onClick={handleClick}>
                 <span>{cell}</span>
               </li>
             );
