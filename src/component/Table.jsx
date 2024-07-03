@@ -13,19 +13,21 @@ function Table({ rowCol, handleClick }) { // rowCol must be either 3 or 4
   });
 
   return (
-    <table id='gameboard'>
-        <tbody>
-            {table.map((row, rowIndex) =>
-              <tr key={rowIndex}>
-                {row.map((column, columnIndex) => {
-                  let cell = null;
-                  if (column) cell = column === 1 ? 'O' : 'X';
-                  return <td key={columnIndex} data-column={columnIndex} data-row={rowIndex} onClick={(e) => handleClick(e, setTable)}>{cell}</td>
-                })}
-              </tr>
-            )}
-        </tbody>
-    </table>
+    <div id='gameboard'>
+      {table.map((row, rowIndex) =>
+        <ol key={`${rowIndex}xx`} className='row'>
+          {row.map((column, columnIndex) => {
+            let cell = null;
+            if (column) cell = column === 1 ? 'O' : 'X';
+            return (
+              <li key={`${rowIndex}x${columnIndex}`} className='cell' data-column={columnIndex} data-row={rowIndex} onClick={e => handleClick(e, setTable)}>
+                <span>{cell}</span>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </div>
   );
 }
 
