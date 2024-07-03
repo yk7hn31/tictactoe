@@ -1,28 +1,28 @@
-import './App.css';
+import { useState } from 'react';
+import './css/App.css';
+import Table from './component/Table.jsx';
+import PlayerList from './component/PlayerList.jsx';
 
 function App() {
+  const [activePlayer, setActivePlayer] = useState(0);
+  function handleTableSelect(e, setTable) {
+    if (!e.target.innerText) {
+      const row = parseInt(e.target.dataset.row);
+      const column = parseInt(e.target.dataset.column);
+      setTable((prevTable) => {
+        const newTable = [...prevTable.map((inner) => [...inner])];
+        newTable[row][column] = activePlayer === 0 ? 1 : -1;
+        setActivePlayer(activePlayer === 0 ? 1 : 0);
+        return newTable;
+      });
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <main>
+      <PlayerList activePlayer={activePlayer} />
+      <Table rowCol={4} handleClick={handleTableSelect} />
+    </main>
   );
 }
 

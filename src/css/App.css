@@ -1,0 +1,50 @@
+@import url('./init.css');
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+#playerlist, #gameboard {
+  border: 2px solid black;
+}
+
+#playerlist {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#playerlist li.player {
+  transition: color .1s, background-color .1s;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .4);
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+#playerlist li.player.active {
+  color: black;
+}
+
+#playerlist li.player:hover {
+  background-color: #c8c8c866;
+}
+
+#gameboard {
+  width: 32rem;
+  height: 32rem;
+}
+
+#gameboard td {
+  width: 25%;
+  height: 25%;
+  text-align: center;
+  border: 1.5px solid #00000066;
+}
