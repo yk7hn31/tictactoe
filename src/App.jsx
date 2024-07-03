@@ -1,26 +1,26 @@
 import { useState } from 'react';
 import './css/App.css';
-import Table from './component/Table.jsx';
+import Gameboard from './component/Gameboard.jsx';
 import PlayerList from './component/PlayerList.jsx';
 
 function App() {
   const [activePlayer, setActivePlayer] = useState(0);
-  function handleTableSelect(e, setTable) {
+  function handleGameboardSelect(e, setGameboard) {
     if (!e.target.innerText) {
       const row = parseInt(e.target.dataset.row);
       const column = parseInt(e.target.dataset.column);
-      setTable((prevTable) => {
-        const newTable = [...prevTable.map((inner) => [...inner])];
-        newTable[row][column] = activePlayer === 0 ? 1 : -1;
+      setGameboard((prevGameboard) => {
+        const newGameboard = [...prevGameboard.map((inner) => [...inner])];
+        newGameboard[row][column] = activePlayer === 0 ? 1 : -1;
         setActivePlayer(activePlayer === 0 ? 1 : 0);
-        return newTable;
+        return newGameboard;
       });
     }
   }
 
   return (
     <main>
-      <Table rowCol={4} handleClick={handleTableSelect} />
+      <Gameboard rowCol={4} handleClick={handleGameboardSelect} />
       <PlayerList activePlayer={activePlayer} />
     </main>
   );

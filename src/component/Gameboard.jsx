@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function Table({ rowCol, handleClick }) { // rowCol must be either 3 or 4
-  const [table, setTable] = useState(() => {
+function Gameboard({ rowCol, handleClick }) { // rowCol must be either 3 or 4
+  const [gameboard, setGameboard] = useState(() => {
     const init = [];
     for (let i = 0; i < rowCol; i++) {
       init.push([]);
@@ -14,13 +14,13 @@ function Table({ rowCol, handleClick }) { // rowCol must be either 3 or 4
 
   return (
     <div id='gameboard'>
-      {table.map((row, rowIndex) =>
+      {gameboard.map((row, rowIndex) =>
         <ol key={`${rowIndex}xx`} className='row'>
           {row.map((column, columnIndex) => {
             let cell = null;
             if (column) cell = column === 1 ? 'O' : 'X';
             return (
-              <li key={`${rowIndex}x${columnIndex}`} className='cell' data-column={columnIndex} data-row={rowIndex} onClick={e => handleClick(e, setTable)}>
+              <li key={`${rowIndex}x${columnIndex}`} className='cell' data-column={columnIndex} data-row={rowIndex} onClick={e => handleClick(e, setGameboard)}>
                 <span>{cell}</span>
               </li>
             );
@@ -31,4 +31,4 @@ function Table({ rowCol, handleClick }) { // rowCol must be either 3 or 4
   );
 }
 
-export default Table;
+export default Gameboard;
