@@ -1,8 +1,9 @@
 import Table from './Table.jsx';
+import Modal from './Modal.jsx';
 
-const winModal = <div>{`Player ${won} won!`}</div>;
+function winCheck(gameboard) {
+  const rowCol = gameboard.length;
 
-function winCheck(rowCol, gameboard) {
   for (let i = 0; i < rowCol; i++) { // row check
     const init = gameboard[i][0];
     if (init && gameboard[i].every(cell => cell === init)) return init;
@@ -49,7 +50,7 @@ function winCheck(rowCol, gameboard) {
   return false;
 }
 
-function deriveGameboard(log) {
+function deriveGameboard(rowCol, log) {
   const gameboard = [];
 
   for (let i = 0; i < rowCol; i++) {
@@ -67,10 +68,12 @@ function deriveGameboard(log) {
 }
 
 function Gameboard({ rowCol, log, handleClick }) { // rowCol must be either 3 or 4
-  const gameboard = deriveGameboard(log);
-  const won = winCheck(rowCol, gameboard);
+  const gameboard = deriveGameboard(rowCol, log);
+  const won = winCheck(gameboard);
 
-  return won ? winModal : <Table gameboard={gameboard} handleClick={handleClick} />;
+  return (
+    won ? <Modal>Player {won} won!</Modal> : <Table gameboard={gameboard} handleClick={handleClick} />
+  );
 }
 
 export default Gameboard;

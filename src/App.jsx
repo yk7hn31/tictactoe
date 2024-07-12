@@ -13,7 +13,7 @@ function App() {
       const column = parseInt(e.target.dataset.column);
       setLog((prevLog) => {
         const newLog = [...prevLog.map(inner => ({...inner}))];
-        let player = prevLog[0] ? prevLog[0].player : 1;
+        const player = prevLog[0]?.player === 1 ? 2 : 1;
         newLog.unshift({ row, column, player });
         return newLog;
       });
