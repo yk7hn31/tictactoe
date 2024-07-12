@@ -1,6 +1,6 @@
 function Table({ gameboard, handleClick }) {
   return (
-    <div id='gameboard'>
+    <div id='gameboard' className={`length-${gameboard.length}`}>
       {gameboard.map((row, rowIndex) =>
         <ol key={`${rowIndex}xx`} className='row'>
           {row.map((column, columnIndex) => {

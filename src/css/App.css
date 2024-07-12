@@ -119,15 +119,28 @@ form.player-edit button:hover {
 }
 
 #gameboard {
-  display: grid;
   max-height: 80svw;
   height: 32rem;
   border-radius: 1.2rem;
+}
+
+#gameboard, #gameboard ol.row {
+  display: grid;
+}
+
+#gameboard.length-3 {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#gameboard.length-4 {
   grid-template-rows: repeat(4, 1fr);
 }
 
-#gameboard ol.row {
-  display: grid;
+#gameboard.length-3 ol.row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#gameboard.length-4 ol.row {
   grid-template-columns: repeat(4, 1fr);
 }
 

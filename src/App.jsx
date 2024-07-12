@@ -4,6 +4,7 @@ import Gameboard from './component/Gameboard.jsx';
 import Player from './component/Player.jsx';
 
 function App() {
+  const searchParam = new URLSearchParams(window.location.search);
   const [log, setLog] = useState([]);
   const activePlayer = log[0] ? log[0].player : 1;
 
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <main>
-      <Gameboard rowCol={4} log={log} handleClick={handleCellSelect} />
+      <Gameboard rowCol={searchParam.get('rowCol') || 4} log={log} handleClick={handleCellSelect} />
       <ol id='playerlist'>
         <Player id={1} activePlayer={activePlayer} />
         <Player id={2} activePlayer={activePlayer} />
