@@ -4,8 +4,8 @@ import Gameboard from './component/Gameboard.jsx';
 import Player from './component/Player.jsx';
 
 function App() {
-  const [activePlayer, setActivePlayer] = useState(1); // player = 1 or 2
   const [log, setLog] = useState([]);
+  const activePlayer = log[0] ? log[0].player : 1;
 
   function handleCellSelect(e) {
     if (!e.target.innerText) {
@@ -13,11 +13,10 @@ function App() {
       const column = parseInt(e.target.dataset.column);
       setLog((prevLog) => {
         const newLog = [...prevLog.map(inner => ({...inner}))];
-        let player = prevLog[0] ? (prevLog[0].player === 1 ? 2 : 1) : 1;
+        let player = prevLog[0] ? prevLog[0].player : 1;
         newLog.unshift({ row, column, player });
         return newLog;
       });
-      setActivePlayer((prevAcPy) => prevAcPy === 1 ? 2 : 1);
     }
   }
 
