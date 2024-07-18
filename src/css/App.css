@@ -157,6 +157,39 @@ form.player-edit button:hover {
   cursor: pointer;
 }
 
-li.cell:hover {
+#gameboard ol.row li.cell:hover {
   background-color: #c8c8c833;
+}
+
+#gameboard:has(.modal) {
+  display: block;
+}
+
+#gameboard .modal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#gameboard .modal .msg {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+#gameboard .modal button {
+  font-weight: 500;
+  font-size: 1.4rem;
+  background-color: #c8c8c866;
+  color: #646464cc;
+  padding: 0.5rem 1rem;
+  margin-top: 1.5rem;
+  border-radius: .5rem;
+  transition: color .2s;
+}
+
+#gameboard .modal button:hover {
+  color: #646464;
 }

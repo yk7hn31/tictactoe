@@ -8,13 +8,13 @@ Used Vite to build app.
 
 You can choose from several running modes:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in development mode.
 The app will be available at http://localhost:3000 by default.
 The page will reload every time a file changes & error lints will be available in the console.
 
-### `npm test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.
 

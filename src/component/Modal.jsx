@@ -1,6 +1,9 @@
-function Modal({ children }) {
+function Modal({ children, onRematch }) {
   return (
-    <div>{children}</div>
+    <div className="modal">
+      <div className="msg">{children}</div>
+      <button onClick={onRematch}>Rematch</button>
+    </div>
   );
 }
 

@@ -67,12 +67,14 @@ function deriveGameboard(rowCol, log) {
   return gameboard;
 }
 
-function Gameboard({ rowCol, log, handleClick }) { // rowCol must be either 3 or 4
+function Gameboard({ rowCol, log, handleCellClick, handleRematch }) { // rowCol must be either 3 or 4
   const gameboard = deriveGameboard(rowCol, log);
   const won = winCheck(gameboard);
 
   return (
-    won ? <Modal>Player {won} won!</Modal> : <Table gameboard={gameboard} handleClick={handleClick} />
+    <div id='gameboard' className={`length-${gameboard.length}`}>
+      {won ? <Modal onRematch={handleRematch}>Player {won} won!</Modal> : <Table gameboard={gameboard} handleClick={handleCellClick} />}
+    </div>
   );
 }
 

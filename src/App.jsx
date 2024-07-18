@@ -8,7 +8,7 @@ function App() {
   const [log, setLog] = useState([]);
   const activePlayer = log[0] ? log[0].player : 1;
 
-  function handleCellSelect(e) {
+  function handleCellClick(e) {
     if (!e.target.innerText) {
       const row = parseInt(e.target.dataset.row);
       const column = parseInt(e.target.dataset.column);
@@ -21,9 +21,13 @@ function App() {
     }
   }
 
+  function handleRematch(e) {
+    setLog([]);
+  }
+
   return (
     <main>
-      <Gameboard rowCol={searchParam.get('rowCol') || 4} log={log} handleClick={handleCellSelect} />
+      <Gameboard rowCol={searchParam.get('rowCol') || 4} log={log} handleCellClick={handleCellClick} handleRematch={handleRematch} />
       <ol id='playerlist'>
         <Player id={1} activePlayer={activePlayer} />
         <Player id={2} activePlayer={activePlayer} />
